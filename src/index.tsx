@@ -1,12 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import App from './components/App';
+import JoinRoom from './components/JoinRoom';
+import CreateRoom from './components/CreateRoom';
+import WaitingRoom from './components/WaitingRoom';
+import GamePage from './components/GamePage';
+
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='/join' element={<JoinRoom />} />
+          <Route path='/create' element={<CreateRoom />} />
+          <Route path='/waiting' element={<WaitingRoom />} />
+          <Route path='/game' element={<GamePage />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
